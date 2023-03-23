@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :wallet do
-    name { "MyString" }
-    balance { 1.5 }
+    name { Faker::Name.name }
+    balance { Faker::Number.number(digits: 6)}
   end
 end
