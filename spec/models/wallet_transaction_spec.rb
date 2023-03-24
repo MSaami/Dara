@@ -37,4 +37,18 @@ RSpec.describe WalletTransaction, type: :model do
       expect {wallet_transaction.save! rescue nil}.not_to change(WalletTransaction, :count)
     end
   end
+
+  describe 'set default' do
+    it 'set default for at date' do
+      wallet_transaction = build(:wallet_transaction, at_date: nil)
+      wallet_transaction.save!
+      expect(wallet_transaction.reload.at_date).to eq(Date.today)
+    end
+
+    it 'skip set default for date if date is specified' do
+      wallet_transaction = build(:wallet_transaction, at_date: Date.today.prev_day.to_s)
+      wallet_transaction.save!
+      expect(wallet_transaction.reload.at_date).to eq(Date.today.prev_day)
+    end
+  end
 end
