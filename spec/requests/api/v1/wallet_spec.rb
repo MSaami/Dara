@@ -9,4 +9,13 @@ RSpec.describe "Api::V1::Wallets", type: :request do
       expect(response).to have_http_status(204)
     end
   end
+
+  describe 'GET /show' do
+    it 'returns wallet details' do
+      wallet = create(:wallet)
+      get '/api/v1/wallet/' + wallet.id.to_s
+      expect(json['data']['name']).to eq(wallet.name)
+      expect(json['data']['balance']).to eq(wallet.balance)
+    end
+  end
 end

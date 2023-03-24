@@ -25,6 +25,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_23_131342) do
     t.bigint "wallet_id", null: false
     t.text "description"
     t.float "amount", null: false
+    t.date "at_date", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["category_id"], name: "index_wallet_transactions_on_category_id"

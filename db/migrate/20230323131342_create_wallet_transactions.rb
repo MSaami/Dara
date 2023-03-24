@@ -7,6 +7,8 @@ class CreateWalletTransactions < ActiveRecord::Migration[7.0]
       t.text :description
       t.float :amount, null: false
 
+      t.date :at_date, null: false
+
       t.timestamps
     end
   end
