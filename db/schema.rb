@@ -20,15 +20,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_23_131342) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "transactions", force: :cascade do |t|
+  create_table "wallet_transactions", force: :cascade do |t|
     t.bigint "category_id", null: false
     t.bigint "wallet_id", null: false
     t.text "description"
     t.float "amount", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["category_id"], name: "index_transactions_on_category_id"
-    t.index ["wallet_id"], name: "index_transactions_on_wallet_id"
+    t.index ["category_id"], name: "index_wallet_transactions_on_category_id"
+    t.index ["wallet_id"], name: "index_wallet_transactions_on_wallet_id"
   end
 
   create_table "wallets", force: :cascade do |t|
@@ -38,6 +38,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_23_131342) do
     t.datetime "updated_at", null: false
   end
 
-  add_foreign_key "transactions", "categories"
-  add_foreign_key "transactions", "wallets"
+  add_foreign_key "wallet_transactions", "categories"
+  add_foreign_key "wallet_transactions", "wallets"
 end

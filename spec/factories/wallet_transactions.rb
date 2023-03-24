@@ -1,5 +1,5 @@
 FactoryBot.define do
-  factory :transaction do
+  factory :wallet_transaction do
     category {Category.first || create(:category)}
     wallet
     amount {Faker::Number.within(range: -99999...999999 )}

@@ -1,3 +1,3 @@
 class Wallet < ApplicationRecord
-  has_many :transaction
+  has_many :wallet_transactions
 end
