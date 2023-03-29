@@ -1,6 +1,10 @@
 class Api::V1::CategoryController < ApplicationController
   before_action :set_category, only: [:update]
 
+  def index
+    render json: {data: Category.all}
+  end
+
   def create
     Category.create!(category_params)
   end

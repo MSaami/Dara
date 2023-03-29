@@ -29,4 +29,13 @@ RSpec.describe "Api::V1::Categories", type: :request do
     end
 
   end
+
+  describe 'GET /index' do
+    it 'returns all categories' do
+      categories = create_list(:category, 15)
+      get '/api/v1/category'
+      expect(response).to have_http_status(200)
+      expect(json['data'].count).to eq(15)
+    end
+  end
 end
