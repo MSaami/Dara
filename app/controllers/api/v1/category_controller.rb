@@ -2,7 +2,7 @@ class Api::V1::CategoryController < ApplicationController
   before_action :set_category, only: [:update]
 
   def index
-    render json: {data: Category.all}
+    render json: Category.all, root: 'data'
   end
 
   def create

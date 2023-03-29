@@ -2,6 +2,7 @@ class WalletTransaction < ApplicationRecord
   belongs_to :category
   belongs_to :wallet
 
+
   validates_presence_of :category
   validates_presence_of :wallet
   validates_presence_of :amount

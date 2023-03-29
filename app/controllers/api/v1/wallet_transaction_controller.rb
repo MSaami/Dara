@@ -3,7 +3,7 @@ class Api::V1::WalletTransactionController < ApplicationController
   before_action :set_wallet_transaction, only: [:update]
 
   def index
-    render json: {data: @wallet.wallet_transactions}
+    render json: @wallet.wallet_transactions, root: :data
   end
 
   def create
