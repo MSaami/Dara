@@ -1,6 +1,10 @@
 class Api::V1::WalletTransactionController < ApplicationController
-  before_action :set_wallet, only: [:create]
+  before_action :set_wallet, only: [:create, :index]
   before_action :set_wallet_transaction, only: [:update]
+
+  def index
+    render json: {data: @wallet.wallet_transactions}
+  end
 
   def create
     wallet_transaction = @wallet.wallet_transactions.build(wallet_params)

@@ -33,5 +33,15 @@ RSpec.describe "Api::V1::WalletTransactions", type: :request do
       put "/api/v1/wallet_transaction/#{wallet_transaction.id}", params: {wallet_transaction: params}
       expect(wallet.reload.balance).to eq(1500)
     end
+
+    describe 'GET /index' do
+      it 'display all of the transaction of wallet' do
+        wallet = create(:wallet)
+        wallet_transactions = create_list(:wallet_transaction, 15, wallet: wallet)
+        get "/api/v1/wallet/#{wallet.id}/wallet_transaction"
+        expect(response).to have_http_status(200)
+        expect(json['data'].count).to eq(15)
+      end
+    end
   end
 end
