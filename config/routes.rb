@@ -5,7 +5,7 @@ Rails.application.routes.draw do
         resources :wallet_transaction, only: [:create, :index]
       end
       resources :category, only: [:create, :update, :index]
-      resources :wallet_transaction, only: [:update]
+      resources :wallet_transaction, only: [:update, :delete, :show]
     end
   end
 end

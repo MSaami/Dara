@@ -1,6 +1,6 @@
 class Api::V1::WalletTransactionController < ApplicationController
   before_action :set_wallet, only: [:create, :index]
-  before_action :set_wallet_transaction, only: [:update]
+  before_action :set_wallet_transaction, only: [:update, :show]
 
   def index
     render json: @wallet.wallet_transactions, root: :data
@@ -14,6 +14,11 @@ class Api::V1::WalletTransactionController < ApplicationController
   def update
     @wallet_transaction.update!(wallet_params)
   end
+
+  def show
+    render json: {data: @wallet_transaction}
+  end
+
 
   private
   def wallet_params

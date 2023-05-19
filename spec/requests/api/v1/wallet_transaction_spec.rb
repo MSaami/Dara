@@ -43,5 +43,19 @@ RSpec.describe "Api::V1::WalletTransactions", type: :request do
         expect(json['data'].count).to eq(15)
       end
     end
+
+    describe 'GET /show' do
+      it 'returns a transaction' do
+        wallet_transaction = create(:wallet_transaction)
+        get "/api/v1/wallet_transaction/#{wallet_transaction.id}"
+        expect(response).to have_http_status(200)
+        body = JSON.parse(response.body)
+        expect(body['data']['id']).to eq(wallet_transaction.id)
+
+
+
+
+      end
+    end
   end
 end
