@@ -51,10 +51,17 @@ RSpec.describe "Api::V1::WalletTransactions", type: :request do
         expect(response).to have_http_status(200)
         body = JSON.parse(response.body)
         expect(body['data']['id']).to eq(wallet_transaction.id)
+      end
+    end
 
-
-
-
+    describe 'DELETE /delete' do
+      it 'delete a transaction' do
+        wallet = create(:wallet, balance: 10000)
+        wallet_transaction = create(:wallet_transaction, amount: 1200, wallet: wallet)
+        delete "/api/v1/wallet_transaction/#{wallet_transaction.id}"
+        expect(response).to have_http_status(204)
+        expect {wallet_transaction.reload}.to raise_error(ActiveRecord::RecordNotFound)
+        expect(wallet.reload.balance).to eq(10000)
       end
     end
   end
