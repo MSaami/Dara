@@ -37,5 +37,6 @@ module Dara
     config.api_only = true
     config.generators.test_framework = :rspec
     ActiveModelSerializers.config.adapter = :json
+    config.current_year = 1402
   end
 end
