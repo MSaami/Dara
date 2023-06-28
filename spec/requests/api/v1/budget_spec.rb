@@ -17,7 +17,7 @@ RSpec.describe "Api::V1::Budgets", type: :request do
   describe "GET wallet/:wallet_id/budget" do
     it 'returns budget related to the wallet' do
       wallet = create(:wallet)
-      budgets = create_list(:budget, 10, wallet: wallet, year: 1402, month: 3)
+      budgets = create_list(:budget, 10, wallet: wallet, year: 1402, month: 4)
       get "/api/v1/wallet/#{wallet.id}/budget"
       expect(response).to have_http_status(200)
       expect(json.has_key?('data')).to be true
@@ -47,7 +47,15 @@ RSpec.describe "Api::V1::Budgets", type: :request do
       expect(budget.amount).to eq(12000)
       expect(budget.year).to eq(1500)
       expect(budget.month).to eq(4)
+    end
+  end
 
+  describe 'SHOW' do
+    it 'display a budget' do
+      budget = create(:budget)
+      get '/api/v1/budget/' + budget.id.to_s
+      expect(response).to have_http_status(200)
+      expect(json['data']['id']).to eq(budget.id)
     end
   end
 end

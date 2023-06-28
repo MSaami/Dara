@@ -1,6 +1,6 @@
 class Api::V1::BudgetController < ApplicationController
   before_action :set_wallet, only: [:create, :index]
-  before_action :set_budget, only: [:destroy, :update]
+  before_action :set_budget, only: [:destroy, :update, :show]
   def create
     @wallet.budgets.create!(create_params)
   end
@@ -15,6 +15,10 @@ class Api::V1::BudgetController < ApplicationController
 
   def update
     @budget.update!(create_params)
+  end
+
+  def show 
+    render json: {data: @budget}
   end
 
   private

@@ -7,7 +7,7 @@ Rails.application.routes.draw do
       end
       resources :category, only: [:create, :update, :index]
       resources :wallet_transaction, only: [:update, :destroy, :show]
-      resources :budget, only: [:destroy, :update]
+      resources :budget, only: [:destroy, :update, :show]
     end
   end
 end
