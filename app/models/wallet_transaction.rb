@@ -1,5 +1,5 @@
 class WalletTransaction < ApplicationRecord
-  default_scope { order(created_at: :desc) }
+  default_scope { order(at_date: :desc) }
   belongs_to :category
   belongs_to :wallet
 
