@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_19_164946) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_08_132818) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -31,6 +31,27 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_19_164946) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "installments", force: :cascade do |t|
+    t.date "due_date"
+    t.float "amount"
+    t.bigint "loan_id", null: false
+    t.integer "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["loan_id"], name: "index_installments_on_loan_id"
+  end
+
+  create_table "loans", force: :cascade do |t|
+    t.integer "number_of_installment"
+    t.string "title"
+    t.float "amount"
+    t.integer "number_of_paid"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "wallet_id", null: false
+    t.index ["wallet_id"], name: "index_loans_on_wallet_id"
   end
 
   create_table "wallet_transactions", force: :cascade do |t|
@@ -54,6 +75,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_19_164946) do
 
   add_foreign_key "budgets", "categories"
   add_foreign_key "budgets", "wallets"
+  add_foreign_key "installments", "loans"
   add_foreign_key "wallet_transactions", "categories"
   add_foreign_key "wallet_transactions", "wallets"
 end

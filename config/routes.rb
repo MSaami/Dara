@@ -4,6 +4,7 @@ Rails.application.routes.draw do
       resources :wallet, only: [:create, :show] do
         resources :budget, only: [:create, :index]
         resources :wallet_transaction, only: [:create, :index]
+        resources :loan, only: [:index, :create]
       end
       resources :category, only: [:create, :update, :index]
       resources :wallet_transaction, only: [:update, :destroy, :show]
