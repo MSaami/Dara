@@ -12,7 +12,7 @@ class WalletTransaction < ApplicationRecord
   before_save :set_defaults
   after_save :update_wallet_balance, if: Proc.new {amount_previously_changed?}
   after_destroy :update_wallet_balance_for_destroy
-  # after_save :update_spend
+  after_save :update_spend
 
   private
   def update_wallet_balance
