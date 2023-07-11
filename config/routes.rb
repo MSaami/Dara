@@ -9,6 +9,10 @@ Rails.application.routes.draw do
       resources :category, only: [:create, :update, :index]
       resources :wallet_transaction, only: [:update, :destroy, :show]
       resources :budget, only: [:destroy, :update, :show]
+      resources :loan do
+        resources :installment, only: [:index]
+      end
+
     end
   end
 end
