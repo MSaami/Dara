@@ -10,7 +10,7 @@ class Api::V1::LoanController < ApplicationController
     date = loan_params[:due_date]
     number_of_installment = 0
     amount = 0
-    loan_params[:installments].each do |installment|
+    loan_params['installments'].each do |installment|
       installment[:number_of_installment].to_i.times do
         loan.installments.create(amount: installment[:amount], due_date: date, status: :unpaid)
         date = date.to_date + 1.month
