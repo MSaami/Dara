@@ -12,7 +12,9 @@ Rails.application.routes.draw do
       resources :loan do
         resources :installment, only: [:index]
       end
-
+      resources :installment do
+        put :pay, on: :member
+      end
     end
   end
 end
