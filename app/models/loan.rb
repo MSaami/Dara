@@ -3,7 +3,7 @@ class Loan < ApplicationRecord
   has_many :installments
 
   def increase_number_of_paid
-    if number_of_paid < number_of_installment
+    if number_of_paid.to_i < number_of_installment.to_i
       increment!(:number_of_paid)
     end
   end
