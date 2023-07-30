@@ -5,6 +5,6 @@ class Installment < ApplicationRecord
 
   def pay!
     paid!
-    loan.increase_number_of_paid
+    loan.increase_number_of_paid(amount)
   end
 end

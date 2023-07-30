@@ -7,4 +7,8 @@ class Wallet < ApplicationRecord
     budgets.where(year: year, month: month)
   end
 
+  def update_balance_by(amount)
+    increment!(:balance, amount)
+  end
+
 end
