@@ -1,5 +1,6 @@
 class Api::V1::LoanController < ApplicationController
   before_action :set_wallet, only: [:index, :create]
+  before_action :set_loan, only: [:destroy, :update]
 
   def index
     render json: {data: @wallet.loans}
@@ -21,6 +22,14 @@ class Api::V1::LoanController < ApplicationController
     loan.update(number_of_installment: number_of_installment, amount: amount)
   end
 
+  def update
+    @loan.update!(update_params)
+  end
+
+  def destroy
+    @loan.destroy!
+  end
+
   private
   def set_wallet
     @wallet = Wallet.find(params[:wallet_id])
@@ -29,4 +38,13 @@ class Api::V1::LoanController < ApplicationController
   def loan_params
     params.require(:loan).permit(:title, :due_date, installments: [:number_of_installment, :amount])
   end
+
+  def set_loan
+    @loan = Loan.find(params[:id])
+  end
+  
+  def update_params
+    params.require(:loan).permit(:title, :amount)
+  end
 end
+

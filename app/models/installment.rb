@@ -7,4 +7,5 @@ class Installment < ApplicationRecord
     paid!
     loan.increase_number_of_paid(amount)
   end
+
 end
