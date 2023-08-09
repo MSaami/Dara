@@ -47,4 +47,14 @@ RSpec.describe "Api::V1::Loans", type: :request do
         .and change {loan.amount}.from(1000).to(2000)
     end
   end
+
+  describe 'SHOW' do
+    it 'shows a loan' do
+      loan = create(:loan)
+      get '/api/v1/loan/' + loan.id.to_s
+      expect(response).to have_http_status(200)
+      body = JSON.parse(response.body)
+      expect(body['data']['id']).to eq(loan.id)
+    end
+  end
 end

@@ -1,6 +1,6 @@
 class Api::V1::LoanController < ApplicationController
   before_action :set_wallet, only: [:index, :create]
-  before_action :set_loan, only: [:destroy, :update]
+  before_action :set_loan, only: [:destroy, :update, :show]
 
   def index
     render json: {data: @wallet.loans}
@@ -28,6 +28,10 @@ class Api::V1::LoanController < ApplicationController
 
   def destroy
     @loan.destroy!
+  end
+
+  def show
+    render json: {data: @loan}
   end
 
   private
