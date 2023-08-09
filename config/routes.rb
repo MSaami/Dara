@@ -12,7 +12,7 @@ Rails.application.routes.draw do
       resources :loan do
         resources :installment, only: [:index]
       end
-      resources :installment, only: [:destroy, :update] do
+      resources :installment, only: [:destroy, :update, :show] do
         put :pay, on: :member
       end
     end

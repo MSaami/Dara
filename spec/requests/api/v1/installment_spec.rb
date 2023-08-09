@@ -56,4 +56,13 @@ RSpec.describe "Api::V1::Installments", type: :request do
       expect(installment.reload.due_date.to_s).to eq('2023-01-01')
     end
   end
+  describe 'SHOW' do
+    it 'shows a installment' do
+      installment = create(:installment)
+      get '/api/v1/installment/' + installment.id.to_s
+      expect(response).to have_http_status(200)
+      body = JSON.parse(response.body)
+      expect(body['data']['id']).to eq(installment.id)
+    end
+  end
 end

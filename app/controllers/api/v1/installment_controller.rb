@@ -1,6 +1,10 @@
 class Api::V1::InstallmentController < ApplicationController
   before_action :set_loan, only: [:index]
-  before_action :set_installment, only: [:pay, :destroy, :update]
+  before_action :set_installment, only: [:pay, :destroy, :update, :show]
+
+  def show
+    render json: {data: @installment}
+  end
 
 
   def index
