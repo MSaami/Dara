@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  devise_for :users
+  devise_scope :user do
+    post "users/sign_up", to: "users/registrations#create"
+    post "sign_in", to: "users/sessions#create"
+  end
   namespace :api do
     namespace :v1 do
       resources :wallet, only: [:create, :show] do

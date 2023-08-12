@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::API
+  before_action :authenticate_devise_api_token!
   rescue_from ActiveRecord::RecordInvalid, with: :record_invalid
 
   def record_invalid(errors)
@@ -10,5 +11,11 @@ class ApplicationController < ActionController::API
       errors: errors,
       status: status
     }, status: status
+  end
+
+  def current_user
+    if current_devise_api_token
+      current_devise_api_token.resource_owner
+    end
   end
 end
