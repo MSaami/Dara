@@ -1,4 +1,5 @@
 class Api::V1::WalletTransactionController < ApplicationController
+  before_action :authenticate_devise_api_token!, only: [:index]
   before_action :set_wallet, only: [:create, :index]
   before_action :set_wallet_transaction, only: [:update, :show, :destroy]
 

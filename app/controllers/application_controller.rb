@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::API
-  before_action :authenticate_devise_api_token!
+  #before_action :authenticate_devise_api_token!
   rescue_from ActiveRecord::RecordInvalid, with: :record_invalid
 
   def record_invalid(errors)
