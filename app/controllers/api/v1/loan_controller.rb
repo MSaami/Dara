@@ -1,4 +1,5 @@
 class Api::V1::LoanController < ApplicationController
+  before_action :authenticate_devise_api_token!, only: [:index]
   before_action :set_wallet, only: [:index, :create]
   before_action :set_loan, only: [:destroy, :update, :show]
 
