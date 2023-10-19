@@ -8,8 +8,6 @@ class Budget < ApplicationRecord
   scope :for_wallet, ->(wallet_id) {where(wallet_id: wallet_id) }
   scope :current_budget,->(wallet_id:, category_id:) { currents.for_wallet(wallet_id).for_category(category_id) }
 
-
-
   def self.sync(wallet_id)
     budgets = Budget.where(wallet_id: wallet_id, year: current_year, month: current_month)
     grouped_data = WalletTransaction

@@ -10,6 +10,11 @@ Rails.application.routes.draw do
         resources :budget, only: [:create, :index]
         resources :wallet_transaction, only: [:create, :index]
         resources :loan, only: [:index, :create]
+        resources :report, only: [] do
+          collection do 
+            get :budget
+          end
+        end
       end
       resources :category, only: [:create, :update, :index]
       resources :wallet_transaction, only: [:update, :destroy, :show]

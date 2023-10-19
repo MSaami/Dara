@@ -32,7 +32,7 @@ class WalletTransaction < ApplicationRecord
   end
 
   def update_spend
-    return if amount.positive?
+    return if amount.positive? || at_date != Date.today
     old_amount = amount_previous_change[0].to_i
     new_amount = amount_previous_change[1].to_i
     budget = Budget.current_budget(category_id: category_id, wallet_id: wallet_id).first
