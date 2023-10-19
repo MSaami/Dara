@@ -1,8 +1,10 @@
 class WalletTransaction < ApplicationRecord
+  extend JalaliTime
   default_scope { order(id: :desc) }
   belongs_to :category
   belongs_to :wallet
 
+  scope :current_month_transactions, -> { where('at_date >= ? and at_date <= ?', first_day_of_month.to_g, last_day_of_month.to_g)}
 
   validates_presence_of :category
   validates_presence_of :wallet

@@ -1,4 +1,5 @@
 require 'rails_helper'
+extend JalaliTime
 
 RSpec.describe "Api::V1::Budgets", type: :request do
   describe "POST wallet/:wallet_id/budget" do
@@ -17,7 +18,7 @@ RSpec.describe "Api::V1::Budgets", type: :request do
   describe "GET wallet/:wallet_id/budget" do
     it 'returns budget related to the wallet' do
       wallet = create(:wallet)
-      budgets = create_list(:budget, 10, wallet: wallet, year: 1402, month: 5)
+      budgets = create_list(:budget, 10, wallet: wallet, year: 1402, month: current_month)
       get "/api/v1/wallet/#{wallet.id}/budget"
       expect(response).to have_http_status(200)
       expect(json.has_key?('data')).to be true

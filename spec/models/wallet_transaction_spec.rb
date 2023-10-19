@@ -51,4 +51,13 @@ RSpec.describe WalletTransaction, type: :model do
       expect(wallet_transaction.reload.at_date).to eq(Date.today.prev_day)
     end
   end
+
+  describe 'scope tests' do
+    it 'tests current_month scope to return current month transactions' do
+      wallet = create(:wallet)
+      wallet_transactions = create_list(:wallet_transaction, 5, wallet: wallet)
+      pre_wallet_transactions = create_list(:wallet_transaction, 2, wallet: wallet, at_date: 35.days.ago)
+      expect(described_class.current_month_transactions.count).to eq(5)
+    end
+  end
 end
